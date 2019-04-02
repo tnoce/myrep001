@@ -5,6 +5,7 @@ variable "zone"{}
 variable "database_user_name"{}
 variable "database_name"{}
 variable "database_character"{}
+variable "database_user_password"{}
 
 provider "alicloud" {
     access_key          =   "${var.access_key}"
@@ -33,13 +34,12 @@ resource "alicloud_db_instance" "default"{
 }
 
 resource "alicloud_db_database" "default"{
-    instance_id         =   "${alicloud_db_instance.db.id}"
     name                =   "${var.database_name}"
     character_set       =   "${var.database_character}"
+    instance_id         =   "${alicloud_db_instance.db.id}"
 }
 
 resource "alicloud_db_account" "default"{
-    instance_id         =   "${alicloud_db_instance.db.id}"
     name                =   "${var.database_user_name}"
     password            =   "${var.database_user_password}"
-}
+    instance_id         =   "${alicloud_db_instance.db.id}"

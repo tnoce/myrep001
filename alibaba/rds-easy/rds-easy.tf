@@ -29,13 +29,3 @@ resource "alicloud_db_instance" "default"{
     vswitch_id          =   "${alicloud_vswitch.default.id}"
 }
 
-resource "alicloud_db_database" "default"{
-    name                =   "${var.database_name}"
-    character_set       =   "${var.database_character}"
-    instance_id         =   "${alicloud_db_instance.default.id}"
-}
-
-resource "alicloud_db_account" "default"{
-    name                =   "${var.database_user_name}"
-    password            =   "${var.database_user_password}"
-    instance_id         =   "${alicloud_db_instance.default.id}"

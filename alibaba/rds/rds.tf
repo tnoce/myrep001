@@ -43,4 +43,5 @@ resource "alicloud_db_account" "default"{
     name                =   "${var.database_user_name}"
     password            =   "${var.database_user_password}"
     instance_id         =   "${alicloud_db_instance.default.id}"
+
 }
